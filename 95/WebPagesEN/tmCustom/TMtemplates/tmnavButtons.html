@@ -1,0 +1,36 @@
+<div class="navbar navbar-default navbar-static-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="<field>F_HTML_FIREWALL</field>online?btnGetEventList=Tickets"><img src="<field>F_HTML_FIREWALL</field>tmGifs/usf-logo.png" style="height: 50px;"></a>
+		</div>
+		<div class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+				<li><a href="<field>F_HTML_FIREWALL</field>online?btnGetEventList=Tickets"><i class="fa fa-ticket"></i> Tickets</a></li>
+				<li><a href="<field>F_HTML_FIREWALL</field>online?btnPass=Gift Certificates"><i class="fa fa-gift"></i> Gift Certificates</a></li>
+				<li><a href="<field>F_HTML_FIREWALL</field>online?btnDonation=Donations">Donations</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="<field>F_HTML_FIREWALL</field>online?btnCart=Shopping Cart"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+				<input type=hidden name=param value="<field>F_HTML_PARAMETER</field>">
+				<field>pick(F_LOGGED_IN=1,'<!-- comment: trick. if not logged on, next 3 buttons dont show','')</field>
+				<li><a href="<field>F_HTML_FIREWALL</field>online?btnAccount=Account">Account</a></li>
+				<field>pick(F_LOGGED_IN=1,'-->','')</field>
+	  			<field>pick(F_LOGGED_IN=2,'<!-- comment: and if not logged on, show login button','')</field>
+				<li><a href="<field>F_HTML_FIREWALL</field>online?btnLogin=Login"><i class="fa fa-lock"></i> Login</a></li>
+				<field>pick(F_LOGGED_IN=2,'-->','')</field>
+			</ul>
+		</div><!--/.nav-collapse -->
+	</div>
+</div>
+
+<div class="container visible-xs" style="margin-bottom: 15px;">
+  <div style="margin: 0 15px 15px 15px;">
+    <a class="btn btn-primary btn-lg pull-right" href="tel:1-800-752-9849"><i class="fa fa-phone"> Call</i></a>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+<HTML>
+<HEAD>   <base href="<field>F_HTML_IMAGE_SERVER</field>">
+<title><field>D_COMPANY_LONG</field> | Description - <field>VE_NAME</field></TITLE>   
+	<!--#include virtual="tmScripts/disclaimer.html" -->
+	<!--#include virtual="tmScripts/styles.html" -->
+	<!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+	<!--#include virtual="tmScripts/buttonRollover.html" -->
+	<!--#include virtual="tmScripts/googleHeader.html" -->
+</HEAD>
+
+<body class="background">
+
+<!--#include virtual="TMtemplates/tmnavButtons.html" -->
+<div class="container">
+<div id="content">
+  
+
+  <div class="row">
+    <div class="col-md-4">
+      <img class="img-responsive" src="<field>F_HTML_SEATMAP</field>">
+    </div>
+    <div class="col-md-8">
+      
+      <div class="page-header">
+        <h1><field>VE_NAME</field></h1>
+      </div>
+
+      <p>
+        <strong><field>VE_NAME</field></strong><br>
+        <field>VE_ADDRESS1</field><br>
+        <field>pick(len(VE_ADDRESS2)=0,con(VE_ADDRESS2,'<br>'))</field>
+        <field>VE_CITY</field> <field>VE_PROVINCE</field> <field>VE_POSTAL_CODE</field><br>
+        <a class=link target="_blank" href="http://maps.google.com/maps?q=<field>VE_ADDRESS1</field> <field>VE_ADDRESS2</field> <field>VE_CITY</field> <field>VE_PROVINCE</field>
+          <field>VE_POSTAL_CODE</field> <field>VE_COUNTRY</field>">Directions to our <field>D_VENUE</field></a>
+      </p>
+
+      <h3><field>D_VENUE</field> Notes</h3>
+      <p>
+        Capacity: <field>TM_SEATS_REPORT</field><br>
+        <field>VE_NOTES</field>
+      </p>
+
+      <FORM ACTION="<field>F_HTML_FIREWALL</field>online" METHOD=POST>
+        <input type=hidden name="venue" value="<field>VE_SEQ</field>">
+        <input name="btnLoginFromDetail" type=submit id="btnLoginFromDetailPage" value="Buy Tickets For Events in this Venue" class="btn btn-default btn-lg"> 
+      </FORM>
+
+    </div>
+  </div>
+
+</div>
+</div><!-- .container -->
+<!--#include virtual="TMtemplates/tmFooter.html" -->
+</BODY>
+</HTML>

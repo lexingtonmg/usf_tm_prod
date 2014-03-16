@@ -1,0 +1,94 @@
+<HTML>
+<HEAD>   <base href="<field>F_HTML_IMAGE_SERVER</field>">
+<title><field>D_COMPANY_LONG</field> | Ticket Seating Selection</TITLE>   
+	<!--#include virtual="tmScripts/disclaimer.html" -->
+	<!--#include virtual="tmScripts/styles.html" -->
+    <!--#include virtual="tmScripts/buttonRollover.html" -->
+    <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+    <!--#include virtual="tmScripts/googleHeader.html" -->
+</HEAD>
+
+<body class="background">
+
+
+<!--#include virtual="TMtemplates/tmnavButtons.html" -->
+
+<div class="container">
+	<div class="page-header">
+		<h1><field>P_PLAY_TITLE</field> <span class="text-muted"><field>cap(dat(PB_PERFORM_DATE,'w n D, y'))</field> at <field>PB_PERFORM_TIME</field></span></h1>
+	</div>
+
+			
+
+	<div class="row">
+		<div class="col-md-4">
+
+			<img class="img-thumbnail" src="http://placehold.it/350x250">
+      		<img class="img-thumbnail" src="<field>F_HTML_IMAGE_EBLAST_SERVER</field>event<field>P_SEQ</field>.jpg" align="absmiddle">
+
+			<h4>You've selected</h4>
+			<p>
+				<field>cap(dat(PB_PERFORM_DATE,'w n D, y'))</field> at <field>PB_PERFORM_TIME</field>
+				<br>
+				<a class="btn btn-default btn-sm" href="<field>F_HTML_FIREWALL</field>online?P_SEQ=<field>P_SEQ</field>&btnLoginFromDetail=">Change Date</a>
+			</p>
+
+			<h4>Venue</h4>
+			<p>
+				<strong><field>VE_NAME</field></strong><br>
+		        <field>VE_ADDRESS1</field><br>
+		        <field>pick(len(VE_ADDRESS2)=0,con(VE_ADDRESS2,'<br>'))</field>
+		        <field>VE_CITY</field> <field>VE_PROVINCE</field> <field>VE_POSTAL_CODE</field>
+			</p>
+
+		</div>
+		<div class="col-md-8">
+			
+			<div class="lead">
+				<field>F_HTML_PAGE_MESSAGE</field>
+			</div>
+
+			<form ACTION="<field>F_HTML_FIREWALL</field>online" METHOD=POST role="form">
+				<input name=PB_SEQ type=hidden id="PB_SEQ" value="<field>PB_SEQ</field>">
+				<input name=F_HTML_NEXT_BEST_SEAT type=hidden id="F_HTML_NEXT_BEST_SEAT" value="<field>F_HTML_NEXT_BEST_SEAT</field>">
+				<input name=F_HTML_NEXT_BEST_AREA type=hidden id="F_HTML_NEXT_BEST_AREA" value="<field>F_HTML_NEXT_BEST_AREA</field>">
+				<input name=F_HTML_BEST_PRICE_CODE type=hidden id="F_HTML_BEST_PRICE_CODE" value="<field>F_HTML_BEST_PRICE_CODE</field>">
+				<input name=F_TOGETHER type=hidden id="F_TOGETHER" value="<field>F_TOGETHER</field>">
+				<input name=F_HTML_NEXT_BEST_PASS_NUMBER type=hidden id="F_HTML_NEXT_BEST_PASS_NUMBER" value="<field>F_HTML_NEXT_BEST_PASS_NUMBER</field>">
+				<input name=F_HTML_NEXT_BEST_TWO_PASS_OK type=hidden id="F_HTML_NEXT_BEST_TWO_PASS_OK" value="<field>F_HTML_NEXT_BEST_TWO_PASS_OK</field>">
+				<input name=F_HTML_NEXT_BEST_SEAT_PRIORITY type=hidden id="F_HTML_NEXT_BEST_SEAT_PRIORITY" value="<field>F_HTML_NEXT_BEST_SEAT_PRIORITY</field>">
+				<input name=F_HTML_NEXT_BEST_SEAT_PRIORITY_SEARCH_TYPE type=hidden id="F_HTML_NEXT_BEST_SEAT_PRIORITY_SEARCH_TYPE" value="<field>F_HTML_NEXT_BEST_SEAT_PRIORITY_SEARCH_TYPE</field>">
+
+				<div class="table-responsive">
+					<table class="table table-striped table-condensed">
+						<thead>
+							<th><field>D_SECTION_DESC</field></th>
+							<th><field>D_ROW_DESC</field></th>
+							<th><field>D_SEAT_DESC</field></th>
+							<th>Seat Notes</th>
+							<th>Pricing</th>
+						</thead>
+						<tbody>
+							<field>F_HTML_BEST_SEATS_LIST</field>
+						</tbody>
+					</table>
+				</div>
+				<input name="btnReserveTicket" type=submit value="Add Tickets to Shopping Cart" class="btn btn-default" onClick="process()" >
+				<field>pick(PB_SALES_METHOD=2,'<!-- comment:')</field>
+				<input name="btnBestAvail" type=submit value="Find Next Best Seats" class="btn btn-default" onClick="process()" >
+				<field>pick(PB_SALES_METHOD=2,'-->')</field>
+				<input name="btnReserveCancel" type=submit value="Cancel Tickets and Start Over" class="btn btn-danger">
+
+			</form>
+
+			<div>
+				<img class="img-responsive" src="<field>F_HTML_SEATMAP</field>&selected_only=yes&selected_border=144&selected_color=007700&img_quality=75" border="0">
+			</div>
+		</div>
+	</div>
+
+
+</div>
+<!--#include virtual="TMtemplates/tmFooter.html" -->
+</BODY>
+</HTML>

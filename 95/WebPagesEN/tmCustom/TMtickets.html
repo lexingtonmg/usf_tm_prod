@@ -1,0 +1,127 @@
+<HTML>
+<HEAD>   <base href="<field>F_HTML_IMAGE_SERVER</field>">
+<title><field>D_COMPANY_LONG</field> | Upcoming <field>tEditCheck.$setPlural(D_EVENT)</field></TITLE>   
+    <meta http-equiv="Pragma" content="no-cache">
+	<!-- Pragma content set to no-cache tells the browser not to cache the page This may or may not work in IE -->
+	<meta http-equiv="expires" content="0">
+	<!-- Setting the page to expire at 0 means the page is immediately expired Any vales less then one will set the page to expire some time in past and not be cached. This may not work with Navigator -->
+
+	<!--#include virtual="tmScripts/disclaimer.html" -->
+	<!--#include virtual="tmScripts/styles.html" -->
+    <!--#include virtual="tmScripts/buttonRollover.html" -->
+    <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+    <!--#include virtual="tmScripts/googleHeader.html" -->
+</HEAD>
+
+<body class="background">
+
+
+<!--#include virtual="TMtemplates/tmnavButtons.html" -->
+<div class="container">
+  <div id="content">
+  
+    <!-- Search panel -->
+    <div class="panel hidden-xs">
+      <div class="panel-heading">
+        <h3 class="panel-title">Search for an event</h3>
+      </div>
+      <div class="panel-body">
+        <form action="<field>F_HTML_FIREWALL</field>online" method="POST" class="">
+              <div class="row">
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <label class="control-label" for="year">Year</label>
+                    <select name="year" id="year" class="form-control">
+                      <field>F_HTML_YEAR_LIST</field>
+                    </select>
+                  </div> <!-- /form-group -->
+                </div> <!-- /col -->
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <label class="control-label" for="month">Month</label>
+                    <select name="month" id="month" class="form-control">
+                      <field>F_HTML_MONTH_LIST</field>
+                    </select>
+                  </div>
+                </div><!-- /col -->
+              <div class="col-md-6">
+
+              <div class="form-group">
+                <label class="control-label" for="event">Event</label>
+                <select name="event" id="event" class="form-control">
+                    <field>F_HTML_EVENT_LIST</field></select>
+                </select>
+              </div> <!-- /form-group -->
+            </div> <!-- /col -->
+            <div class="col-md-2">
+              <div class="form-group" style="margin-top: 25px;">
+                <input name="btnGetEventList" type="submit" id="Search" value="Search" class="new btn btn-default btn-block" onclick="process()">
+              </div> <!-- /form-group -->
+            </div> <!-- /col -->
+          </div> <!-- /row -->
+          <div class="row">
+            <div class="col-md-6">
+              <div class="input-group">
+                <field>pick(F_PRESALES_ALLOWED,'<!-- comment: based on setting in company preferences')</field>
+                <input name="CH_CODE" type=text id="CH_CODE" value="<field>CH_CODE</field>" size=40 maxlength=40 onBlur="this.value=this.value.toUpperCase()" placeholder="Presale Access Code">
+                <span class="input-group-btn">
+                  <input name="btnCouponAccept" type="submit" class="new btn btn-default" onclick="process()" >
+                  <input name='param' type='hidden' value ='altbtn=btnGetEventList'>
+                </span>
+                <field>pick(F_PRESALES_ALLOWED,' -->')</field>
+              </div>  
+              <center><!--#include virtual="TMtemplates/pleaseWaitMessage.html" --></center>
+
+            </div> <!-- /col -->
+          </div> <!-- /row -->
+        </form>
+      </div><!-- /panel-body -->
+    </div> <!-- /panel -->
+
+    <div class="bs-callout bs-callout-warning">
+      <h4>Ticket discounts are not available online.</h4>
+      <p>If you would like to take advantage of any discounts,
+      please call the Ticket Office toll-free at 800-PLAYTIX (800-752-9849).</p>
+
+      <p><small>All times are Mountain Time.</small></p>
+    </div>
+
+    <small class="text-muted"><field>F_HTML_PAGE_MESSAGE</field></small>
+
+    <!-- Begin restructured event list -->
+    <div class="pull-right" style="margin-bottom: 10px;">
+      <span class="text-muted"><small>Availability:</small></span>
+      <span class="label label-success">Good</span>
+      <span class="label label-warning">Limited</span>
+      <span class="label label-danger">Sold out</span>
+    </div>
+    <div class="clearfix add-border-bottom"></div>
+    <field>F_HTML_PERFORMANCE_LIST</field>
+    <!-- END restructured event list -->
+
+      
+
+    <div align="center">
+
+      <!-- Pagination -->
+      <ul class="pagination">
+        <field>F_HTML_PAGE_LIST</field>
+      </ul>
+
+      <p class="text-muted"><field>pick(F_LINE_COUNT>0,con('No ',D_EVENT,'(s) match the criteria'),con(D_EVENT,' ',F_LINE_FIRST_DISPLAYED,'-',F_LINE_LAST_DISPLAYED,' of ',F_LINE_COUNT,' displayed'))</field></p>
+
+      <FORM ACTION="<field>F_HTML_FIREWALL</field>online" METHOD=POST>
+        <field>pick(F_LOGGED_IN=1,'<!-- comment: trick. if not logged on, home doesnt show','')</field>
+        <input name="btnHome" type=submit value="Cancel Buying Tickets" class="new" onMouseOver="pviiClassNew(this,'newover')" onMouseOut="pviiClassNew(this,'new')" >
+        <field>pick(F_LOGGED_IN=1,'-->','')</field>
+        <field>pick(F_LOGGED_IN=2,'<!-- comment: and if not logged on, show logout button','')</field>
+        <input name="btnLogout" type="submit" class="btn btn-default" id="btnLogout" value="Logout and Empty Shopping Cart">
+        <field>pick(F_LOGGED_IN=2,'-->','')</field>
+      </FORM>
+    </div>
+
+  </div><!-- /#content -->
+</div><!-- /.container -->
+<!--#include virtual="TMtemplates/tmFooter.html" -->
+</BODY>
+</HTML>

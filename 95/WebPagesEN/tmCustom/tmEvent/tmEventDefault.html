@@ -1,0 +1,64 @@
+<HTML>
+<HEAD>   <base href="<field>F_HTML_IMAGE_SERVER</field>">
+<title><field>D_COMPANY_LONG</field> | Description - <field>P_PLAY_TITLE</field></TITLE>   
+	<!--#include virtual="tmScripts/disclaimer.html" -->
+	<!--#include virtual="tmScripts/styles.html" -->
+	<!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+	<!--#include virtual="tmScripts/buttonRollover.html" -->
+	<!--#include virtual="tmScripts/googleHeader.html" -->
+</HEAD>
+
+<body class="background">
+
+<!--#include virtual="TMtemplates/tmnavButtons.html" -->
+<div class="container">
+<div id="content">
+
+  <div class="row">
+    <div class="col-md-4">
+      <img class="img-responsive" src="<field>F_HTML_FIREWALL</field>picture?id=<field>P_SEQ</field>">
+    </div>
+    <div class="col-md-8">
+      <div class="page-header">
+        <h1><field>P_PLAY_TITLE</field></h1>
+      </div>
+      
+      <h3>When</h3>
+      <p>
+        <field>pick(P_PERFORMANCES=1,'Runs from','Occurs on')</field>
+        <field>cap(dat(P_SHOW_FIRST,'w n D y'))</field>
+        <field>pick(P_PERFORMANCES=1,con('to ',cap(dat(P_SHOW_LAST,'w n D y'))))</field>
+      </p>
+
+      <h3>Venue</h3>
+      <p>
+        <strong><field>VE_NAME</field></strong><br>
+        <field>VE_ADDRESS1</field><br>
+        <field>pick(len(VE_ADDRESS2)=0,con(VE_ADDRESS2,'<br>'))</field>
+        <field>VE_CITY</field> <field>VE_PROVINCE</field> <field>VE_POSTAL_CODE</field>
+      </p>
+
+      <h3><field>D_PERF_DESC</field> Notes</h3>
+      <p>
+        <field>P_SALES_NOTES</field>
+      </p>
+
+      <p class="text-muted">Approximate running time: <field>P_PLAY_DURATION</field> minutes</p>
+
+      <FORM ACTION="<field>F_HTML_FIREWALL</field>online" METHOD=POST>
+        <input type=hidden name="P_SEQ" value="<field>P_SEQ</field>">
+        <input name="btnLoginFromDetail" type=submit id="btnLoginFromDetailPage" value="Buy Tickets To This Event"
+                    class="btn btn-default btn-lg">
+      </FORM>
+
+    </div>
+  </div>
+
+
+
+  
+</div><!-- /#content -->
+</div><!-- /.container -->
+<!--#include virtual="TMtemplates/tmFooter.html" -->
+</BODY>
+</HTML>

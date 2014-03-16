@@ -1,0 +1,26 @@
+<div class="media">
+	<a class="pull-left" href="<field>F_HTML_FIREWALL</field>tmEvent/tmEvent<field>PB_P_SEQ</field>.html">
+		<img class="media-object visible-lg" src="<field>F_HTML_FIREWALL</field>picture?id=<field>P_SEQ</field>" style="width: 64px;">
+		<img class="media-object visible-md" src="<field>F_HTML_FIREWALL</field>picture?id=<field>P_SEQ</field>" style="width: 90px;">
+        <img class="media-object visible-sm visible-xs" src="<field>F_HTML_FIREWALL</field>picture?id=<field>P_SEQ</field>" style="width: 130px;">
+	</a>
+	<div class="media-body">
+		<h4 class="media-heading">
+			<a href="<field>F_HTML_FIREWALL</field>tmEvent/tmEvent<field>PB_P_SEQ</field>.html">
+				<field>P_PLAY_TITLE</field>
+			</a>
+			<span class="pull-right text-muted"><field>cap(dat(PB_PERFORM_DATE,'w m D y'))</field> <field>PB_PERFORM_TIME</field></span>
+		</h4>
+		<div class="row">
+			<div class="col-sm-10">
+				<a href="<field>F_HTML_FIREWALL</field>tmVenue/tmVenue<field>TM_SEQ</field>.html" class=link><field>VE_NAME</field></a>
+			</div> <!-- /col -->
+			<div class="col-sm-2">
+				<a href="<field>F_HTML_FIREWALL</field>online?btnSelectEvent=Buy&PB_SEQ=<field>PB_SEQ</field>" 
+					class="pull-right btn btn-block <field>pick(F_SOLD_PERCENT<80,'','btn-success')</field><field>pick(F_SOLD_PERCENT>=80&F_SOLD_PERCENT<90,'','btn-warning')</field><field>pick(F_SOLD_PERCENT>=100,'','btn-danger')</field>">
+					<i class="fa fa-ticket"></i> Buy
+				</a>
+			</div> <!-- /col -->
+		</div> <!-- /row -->
+	</div>
+</div><!-- /.media -->

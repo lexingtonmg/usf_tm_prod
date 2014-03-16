@@ -1,0 +1,78 @@
+<HTML>
+<HEAD>   <base href="<field>F_HTML_IMAGE_SERVER</field>">
+<title><field>D_COMPANY_LONG</field> | Login</TITLE>   
+	<!--#include virtual="tmScripts/disclaimer.html" -->
+	<!--#include virtual="tmScripts/styles.html" -->
+    <!--#include virtual="tmScripts/buttonRollover.html" -->
+	<!--#include virtual="tmScripts/googleHeader.html" -->
+</HEAD>
+
+<body>
+
+<!--#include virtual="TMtemplates/tmnavButtons.html" -->
+
+<div class="container">
+
+  <div class="page-header">
+    <h1><field>D_COMPANY_LONG</field> Login</h1>
+  </div>
+
+  <div class="row">
+    
+    <div class="col-md-4">
+      <form role="form" ACTION="<field>F_HTML_FIREWALL</field>online" METHOD=POST>
+        <div class="form-group">
+          <label for="e">Email</label>
+          <INPUT class="form-control" id="e" NAME=e TYPE=text VALUE="<field>F_EMAIL_ADDRESS</field>" SIZE=30>
+        </div>
+        <div class="form-group">
+          <label for="p">Password</label>
+          <INPUT class="form-control" TYPE=Password id="p" NAME="p" VALUE="" size=20 maxlength=20 autocomplete=off>
+        </div>
+        <input type=submit name="btnLoginAccount" value="Login"  class="btn btn-default">
+        <input type=hidden name="C_SEQ" value="<field>C_SEQ</field>">
+        <input type=hidden name=param value="<field>F_HTML_PARAMETER</field>">
+      </form>
+  </div>
+  
+
+  <div class="col-md-8">
+      <div class="bs-callout bs-callout-info">
+        <field>F_HTML_PAGE_MESSAGE</field>
+      </div>
+
+      <form role="form" ACTION="<field>F_HTML_FIREWALL</field>online" METHOD=POST>
+        <div class="form-group">
+          <input class="form-control btn btn-primary" name="btnAccountRequest" type=submit value="New <field>D_PATRON</field>">
+          <p class="help-block">Create a new account.</p>
+        </div>
+      </form>
+
+      <form role="form" ACTION="<field>F_HTML_FIREWALL</field>online" METHOD=POST>
+        <div class="form-group">
+          <input class="form-control btn btn-primary" name="btnPasswordRequest" type=submit value="Forgot My Password">
+          <p class="help-block">Reset your password.</p>
+        </div>
+      </form>
+
+      <form role="form" ACTION="<field>F_HTML_FIREWALL</field>online" METHOD=POST>
+        <div class="form-group">
+          <field>pick(D_WEB_VIEW_EVENTS_WITHOUT_LOGIN,"<!-- comment:","")</field>
+            <input class="form-control btn btn-primary" name="btnGetEventList" type=submit value="Browse Anonymously">
+            <p class="help-block">
+              If you wish to browse for tickets without logging in yet.  
+              Please note that you will be required to sign in with a valid Email ID prior to completing your 
+              <field>low(D_ORDER_DESC)</field>.
+            </p>
+            <field>pick(D_WEB_VIEW_EVENTS_WITHOUT_LOGIN,"-->","")</field>
+        </div>
+      </form>
+
+    </div>
+
+  </div>
+
+</div><!-- .container -->
+<!--#include virtual="TMtemplates/tmFooter.html" -->
+</BODY>
+</HTML>
