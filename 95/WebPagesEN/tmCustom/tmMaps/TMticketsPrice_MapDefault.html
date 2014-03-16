@@ -23,14 +23,13 @@
 	<div class="row">
 		<div class="col-md-4">
 
-			<img class="img-thumbnail" src="http://placehold.it/350x250">
-      		<img class="img-thumbnail" src="<field>F_HTML_IMAGE_EBLAST_SERVER</field>event<field>P_SEQ</field>.jpg" align="absmiddle">
+      			<img class="img-thumbnail" src="<field>F_HTML_FIREWALL</field>image?event=<field>P_SEQ</field>" align="absmiddle">
 
 			<h4>You've selected</h4>
 			<p>
 				<field>cap(dat(PB_PERFORM_DATE,'w n D, y'))</field> at <field>PB_PERFORM_TIME</field>
 				<br>
-				<a class="btn btn-default btn-sm" href="<field>F_HTML_FIREWALL</field>online?P_SEQ=<field>P_SEQ</field>&btnLoginFromDetail=">Change Date</a>
+				<a class="btn btn-info btn-sm" href="<field>F_HTML_FIREWALL</field>online?P_SEQ=<field>P_SEQ</field>&btnLoginFromDetail=">Change Date</a>
 			</p>
 
 			<h4>Venue</h4>
@@ -73,9 +72,9 @@
 						</tbody>
 					</table>
 				</div>
-				<input name="btnReserveTicket" type=submit value="Add Tickets to Shopping Cart" class="btn btn-default" onClick="process()" >
+				<input name="btnReserveTicket" type=submit value="Add Tickets to Shopping Cart" class="btn btn-success" onClick="process()" >
 				<field>pick(PB_SALES_METHOD=2,'<!-- comment:')</field>
-				<input name="btnBestAvail" type=submit value="Find Next Best Seats" class="btn btn-default" onClick="process()" >
+				<input name="btnBestAvail" type=submit value="Find Next Best Seats" class="btn btn-info" onClick="process()" >
 				<field>pick(PB_SALES_METHOD=2,'-->')</field>
 				<input name="btnReserveCancel" type=submit value="Cancel Tickets and Start Over" class="btn btn-danger">
 

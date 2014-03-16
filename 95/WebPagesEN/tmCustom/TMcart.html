@@ -1,0 +1,118 @@
+<HTML>
+<HEAD>   <base href="<field>F_HTML_IMAGE_SERVER</field>">
+<title><field>D_COMPANY_LONG</field> | Shopping Cart Window</TITLE>
+    <!--#include virtual="tmScripts/disclaimer.html" -->
+    <!--#include virtual="tmScripts/styles.html" -->
+    <!--#include virtual="tmScripts/buttonRollover.html" -->
+    <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+    <!--#include virtual="tmScripts/dropDownMenuFunction.html" -->
+    <!--#include virtual="tmScripts/googleHeader.html" -->
+</HEAD>
+
+<body class="background">
+
+
+<!--#include virtual="TMtemplates/tmnavButtons.html" -->
+
+<div class="container">
+
+<div id="content">
+
+<h1 class="message"><field>F_HTML_PAGE_MESSAGE</field></h1>
+
+<field>pick(F_DONATION_ALLOWED,'<!-- comment: based on setting in company preferences','')</field>
+  <div class="alert alert-info">
+    <h4>Make a donation</h4>
+    <p>
+        Please consider making a <a class=link href="<field>F_HTML_FIREWALL</field>login&donation=0">donation</a>. <field>D_COMPANY_LONG</field>
+        is a registered charity and your donation is completely deductible to the full extent of the law.
+    </p>
+  </div>
+<field>pick(F_DONATION_ALLOWED,'-->','')</field>
+
+  <FORM id="TMForm" ACTION="<field>F_HTML_FIREWALL</field>online" METHOD=POST><DIV ALIGN="center" >
+            <table class="table table-striped">
+              <thead>
+              <tr class="tablerowheader"> 
+                <th width="10%" height="25">Item</th>
+                <th width="5%" align="center">Qty</th>
+                <th width="73%" align="left">Description</th>
+                <th width="12%" align="right">Total</th>
+                <th width="8%" align="center">Remove</th>
+              </tr>
+            </thead>
+            <tbody>
+              <field>F_HTML_CURRENT_CART_LIST</field>
+            </tbody>
+            </table>
+            <div>
+              <p class="pull-right"><B>GRAND TOTAL 
+                  <field>pick(SCH_TAX1+SCH_TAX2+SCH_TAX3>0,'','(includes all applicable taxes)')</field></B>
+                  <B>$<field>SCH_TOTAL_COST</field></B>
+                  <field>pick(F_REMOVE_CART_ITEM_ALLOWED,'<!-- comment: only show remove cart item button if need to','')</field>
+                  <input name="btnCartRemoveItem" type=submit value="Remove" class="btn btn-danger" onclick="process()" >
+                  <field>pick(F_REMOVE_CART_ITEM_ALLOWED,'-->','')</field>
+              </p>
+            </div>
+            <div style="clear: both;">
+            <!--#include virtual="TMtemplates/pleaseWaitMessage.html" -->
+                <input name="btnGetEventList" type="submit" class="btn btn-default" id="btnGetEventList" value="Continue Shopping" onClick="process()">
+                
+                <field>pick(D_ENABLE_INTERNET_PASS_REDEMPTION=1,'<!-- comment: only show if enabled to redeem passes','')</field>
+                <input name="btnPassRemainingValues" type="submit" value="Redeem My Passes/Gift Certificates" class="btn btn-default" onClick="process()">
+                <field>pick(D_ENABLE_INTERNET_PASS_REDEMPTION=1,'-->','')</field>
+                
+                <!-- comment: Update the hidden "fee" field with the Fee Number with the matching Mailing Fee Number 
+                              in Theatre Manager.  If you do not want the mailing option at all on your web pages, 
+                              comment out the following section  or remove the fee number from company preferences.
+                              If you want the patron to go to the checkout page right away, then add the input field
+                              <input type=hidden name=param value="altbtn=btnCheckoutProcessing"> after the 
+                              D_WEB_MAIL_FEE_SEQ input field.
+                -->
+                <field>pick(F_MAIL_FEE_ALLOWED,'<!-- comment: only show mail button if required')</field>
+                <input name="btnMailFeeAdd" type=submit value="Mail me my tickets" class="btn btn-info" onclick="process()">&nbsp;
+                <input type=hidden name=fee value="<field>D_WEB_MAIL_FEE_SEQ</field>">
+                <field>pick(F_MAIL_FEE_ALLOWED,'-->')</field>
+                
+                <field>pick(D_ENABLE_INTERNET_PASS_REDEMPTION&F_MAIL_FEE_ALLOWED,'<!-- comment: send to a new line','')</field>
+                <br><br>
+                <field>pick(D_ENABLE_INTERNET_PASS_REDEMPTION&F_MAIL_FEE_ALLOWED,'-->','')</field>
+                
+                <input name="btnCheckout" type=submit value="Checkout &amp; Pay" class="btn btn-success" onClick="process()">
+                <br><br>
+                <span class="main">
+                  If you wish to purchase another ticket, <field>low(D_MEMBER_DESC)</field>
+                  or make a <field>low(D_DONATION_DESC)</field>, select from the menu options 
+                  at the top of the window.</span>
+                  <br><br>
+            </div>
+            <input type=hidden name=hiddenSubmit value="">  <!--comment: hidden input used to submit drop-down selections-->
+            <!-- comment: This section to allow coupon acceptance from the cart page.
+                          The hidden parameter 'param' can be set to 'btnCart' to return to the cart window 
+                          when an error occurs or can be removed to be directed to a seperate entry page 
+                          or can be set to 'btnGetEventList' to go to the ticket page showing only the 
+                          events that the coupon opens up for pre-sales access.
+            -->
+          </DIV>
+        </FORM>
+        <div align="center">
+          <field>pick(F_COUPON_ALLOWED,'<!-- comment: based on setting in company preferences')</field>
+            
+                  <form action="<field>F_HTML_FIREWALL</field>online" method='post' class="form-inline">
+                    <input name='param' type='hidden' value ='altbtn=btnGetEventList'>
+                    <div class="form-group">
+                    <input class="form-control" name="CH_CODE" type=text id="CH_CODE" value="<field>CH_CODE</field>" size=40 maxlength=40 onblur="this.value=this.value.toUpperCase()" placeholder="Coupon Code">
+                    </div>
+                    <input name="btnCouponAccept" type=submit class="btn btn-success" value="Add Coupon" onclick="process()">
+                  </form>
+            <field>pick(F_COUPON_ALLOWED,'-->')</field>
+        </div>
+  
+            
+
+</div>
+
+</div><!-- .container -->
+<!--#include virtual="TMtemplates/tmFooter.html" -->
+</BODY>
+</HTML>

@@ -26,14 +26,13 @@
 	<div class="row">
 		<div class="col-md-4">
 
-			<img class="img-thumbnail" src="http://placehold.it/350x250">
-      		<img class="img-thumbnail" src="<field>F_HTML_IMAGE_EBLAST_SERVER</field>event<field>P_SEQ</field>.jpg" align="absmiddle">
+      			<img class="img-thumbnail" src="<field>F_HTML_FIREWALL</field>image?event=<field>P_SEQ</field>">
 
 			<h4>You've selected</h4>
 			<p>
 				<field>cap(dat(PB_PERFORM_DATE,'w n D, y'))</field> at <field>PB_PERFORM_TIME</field>
 				<br>
-				<a class="btn btn-default btn-sm" href="<field>F_HTML_FIREWALL</field>online?P_SEQ=<field>P_SEQ</field>&btnLoginFromDetail=">Change Date</a>
+				<a class="btn btn-info btn-sm" href="<field>F_HTML_FIREWALL</field>online?P_SEQ=<field>P_SEQ</field>&btnLoginFromDetail=">Change Date</a>
 			</p>
 
 			<h4>Venue</h4>
@@ -75,7 +74,7 @@
 					</label>
 				</div>
 				<!--#include virtual="TMtemplates/pleaseWaitMessage.html" -->
-				<INPUT name="btnBestAvail" TYPE=submit VALUE="Find Best Seats Available" class="btn btn-default" onClick="process()">
+				<INPUT name="btnBestAvail" TYPE=submit VALUE="Find Best Seats Available" class="btn btn-success" onClick="process()">
 				<input name="btnBestAvailCancel" type=submit value="Cancel to Start Over" class="btn btn-danger">
 
 			</form>

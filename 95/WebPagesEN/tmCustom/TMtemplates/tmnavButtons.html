@@ -20,6 +20,7 @@
 				<input type=hidden name=param value="<field>F_HTML_PARAMETER</field>">
 				<field>pick(F_LOGGED_IN=1,'<!-- comment: trick. if not logged on, next 3 buttons dont show','')</field>
 				<li><a href="<field>F_HTML_FIREWALL</field>online?btnAccount=Account">Account</a></li>
+				<li><a href="<field>F_HTML_FIREWALL</field>online?btnLogout=Logout">Logout</a></li>
 				<field>pick(F_LOGGED_IN=1,'-->','')</field>
 	  			<field>pick(F_LOGGED_IN=2,'<!-- comment: and if not logged on, show login button','')</field>
 				<li><a href="<field>F_HTML_FIREWALL</field>online?btnLogin=Login"><i class="fa fa-lock"></i> Login</a></li>
