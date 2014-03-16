@@ -114,10 +114,10 @@
 
       <FORM ACTION="<field>F_HTML_FIREWALL</field>online" METHOD=POST>
         <field>pick(F_LOGGED_IN=1,'<!-- comment: trick. if not logged on, home doesnt show','')</field>
-        <input name="btnHome" type=submit value="Cancel Buying Tickets" class="btn btn-default">
+        <input name="btnHome" type=submit value="Cancel Buying Tickets" class="btn btn-danger">
         <field>pick(F_LOGGED_IN=1,'-->','')</field>
         <field>pick(F_LOGGED_IN=2,'<!-- comment: and if not logged on, show logout button','')</field>
-        <input name="btnLogout" type="submit" class="btn btn-default" id="btnLogout" value="Logout and Empty Shopping Cart">
+        <input name="btnLogout" type="submit" class="btn btn-danger" id="btnLogout" value="Logout and Empty Shopping Cart">
         <field>pick(F_LOGGED_IN=2,'-->','')</field>
       </FORM>
     </div>

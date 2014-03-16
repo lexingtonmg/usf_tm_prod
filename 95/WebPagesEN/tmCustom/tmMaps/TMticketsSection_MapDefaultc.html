@@ -1,0 +1,85 @@
+<HTML>
+<HEAD><base href="<field>F_HTML_IMAGE_SERVER</field>">
+<title><field>D_COMPANY_LONG</field> | <field>D_COURSE_DESC</field> Registration</TITLE>   
+    <!--#include virtual="tmScripts/disclaimer.html" -->
+    <!--#include virtual="tmScripts/styles.html" -->
+    <!--#include virtual="tmScripts/buttonRollover.html" -->
+    <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+    <!--#include virtual="tmScripts/googleHeader.html" -->
+</HEAD>
+
+<body class="background">
+
+
+<!--#include virtual="TMtemplates/tmnavButtons.html" -->
+
+<div class="container">
+
+    <div class="page-header">
+        <h1><field>P_PLAY_TITLE</field> <span class="text-muted"><field>cap(dat(PB_PERFORM_DATE,'w n D, y'))</field> at <field>PB_PERFORM_TIME</field></span></h1>
+    </div>
+
+    <div class="">
+        <field>F_HTML_PAGE_MESSAGE</field>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+
+            <img class="media-object visible-lg visible-md img-thumbnail" src="<field>F_HTML_FIREWALL</field>image?event=<field>P_SEQ</field>">
+            <img class="media-object visible-sm visible-xs img-thumbnail" src="<field>F_HTML_FIREWALL</field>image?event=<field>P_SEQ</field>" style="width: 64px;">
+
+            <h4>You've selected</h4>
+            <p>
+                <field>cap(dat(PB_PERFORM_DATE,'w n D, y'))</field> at <field>PB_PERFORM_TIME</field>
+                <br>
+                <a class="btn btn-info btn-sm" href="<field>F_HTML_FIREWALL</field>online?P_SEQ=<field>P_SEQ</field>&btnLoginFromDetail=">Change Date</a>
+            </p>
+
+            <h4>Venue</h4>
+            <p>
+                <strong><field>VE_NAME</field></strong><br>
+                <field>VE_ADDRESS1</field><br>
+                <field>pick(len(VE_ADDRESS2)=0,con(VE_ADDRESS2,'<br>'))</field>
+                <field>VE_CITY</field> <field>VE_PROVINCE</field> <field>VE_POSTAL_CODE</field>
+            </p>
+
+        </div>
+        <div class="col-md-8">
+            <form ACTION="<field>F_HTML_FIREWALL</field>online" METHOD=POST role="form">
+                <input name=PB_SEQ type=hidden id="PB_SEQ" value="<field>PB_SEQ</field>">
+                <div class="form-group">
+                    <label for="PS_QUANTITY"><h4>Select the number of attendees that you want to enroll</h4></label><br>
+                    <select class="form-control" name="PS_QUANTITY" size="1" id="PS_QUANTITY"><field>F_HTML_TICKET_QTY_LIST</field></select>
+                </div>
+                <div class="form-group" style="margin-top: 15px;">
+                    <!--#include virtual="TMtemplates/pleaseWaitMessage.html" -->
+                    <input name="btnBestAvail" type=submit value="Register" class="btn btn-success" onClick="process()" >
+                    <input name="btnBestAvailCancel" type=submit value="Cancel to Start Over" class="btn btn-danger" >
+                </div>
+            </form>
+
+            <div class="alert alert-info">
+                <p>This <b><field>D_COURSE_DESC</field></b> requires additional registration information before completing the sale
+                such as  attendee names (if it will not be yourself ). You may need to add other member(s) to your household
+                in your account details.</p>
+
+                <field>pick(F_LOGGED_IN=1,'<p><em>This is done after you have logged in and prior to paying for the sale. You will be prompted as neccessary.</em></p>')</field>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><field>D_COURSE_DESC</field> Notes/Registration Information</h3>
+                </div>
+                <div class="panel-body">
+                    <field>P_SALES_NOTES</field>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div><!-- .container -->
+<!--#include virtual="TMtemplates/tmFooter.html" -->
+</BODY>
+</HTML>
