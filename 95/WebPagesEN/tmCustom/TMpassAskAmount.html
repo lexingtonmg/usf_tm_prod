@@ -1,0 +1,53 @@
+<HTML>
+<HEAD>   <base href="<field>F_HTML_IMAGE_SERVER</field>">
+<title><field>D_COMPANY_LONG</field> | Pass/Gift Certificate Price/Quantity</TITLE>   
+    <!--#include virtual="tmScripts/disclaimer.html" -->
+    <!--#include virtual="tmScripts/styles.html" -->
+    <!--#include virtual="tmScripts/buttonRollover.html" -->
+    <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+    <!--#include virtual="tmScripts/googleHeader.html" -->
+</HEAD>
+
+<body class="background">
+
+
+<!--#include virtual="TMtemplates/tmnavButtons.html" -->
+<div class="container">
+
+  <div class="page-header">
+    <h1>Gift Certificate <span class="text-muted">Choose Amount</span></h1>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="bs-callout bs-callout-info">
+        <field>F_HTML_PAGE_MESSAGE</field>
+      </div>
+    </div>
+    <div class="col-md-8">
+
+      <FORM role="form" ACTION="<field>F_HTML_FIREWALL</field>online" METHOD=POST>
+        <div class="form-group">
+          <label for="MT_DESCRIPTION_EXTERNAL">Pass Type</label>
+          <INPUT class="form-control" NAME="MT_DESCRIPTION_EXTERNAL" TYPE=text id="MT_DESCRIPTION_EXTERNAL" value="<field>MT_DESCRIPTION_EXTERNAL</field>" SIZE=30 MAXLENGTH=30 readonly="true">
+        </div>
+        <div class="form-group">
+          <label for="M_PURCHASE_AMOUNT">Pass Amount Each</label>
+          <input class="form-control" name="M_PURCHASE_AMOUNT" type=text id="M_PURCHASE_AMOUNT" value="<field>M_PURCHASE_AMOUNT</field>" size=25 maxlength=25>
+        </div>
+        <div class="form-group">
+          <label for="M_NOTES">Personalized Message</label>
+          <textarea class="form-control" id="M_NOTES" name="M_NOTES" cols="50" rows="5"><field>M_NOTES</field></textarea>
+        </div>
+        <!--#include virtual="TMtemplates/pleaseWaitMessage.html" -->
+        <INPUT NAME="MT_SEQ" TYPE=hidden id="MT_SEQ" value="<field>MT_SEQ</field>" SIZE=30 MAXLENGTH=30 readonly="true">
+        <input name="btnPassAmountAccept" type=submit value="Add to Shopping Cart" class="btn btn-success" onClick="process()" >
+        <INPUT name="btnPassAmountCancel" TYPE=submit VALUE="Cancel Purchase" class="btn btn-danger">
+    </FORM>
+
+      
+    </div>
+</div><!-- .container -->
+<!--#include virtual="TMtemplates/tmFooter.html" -->
+</BODY>
+</HTML>

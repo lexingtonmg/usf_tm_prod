@@ -1,0 +1,168 @@
+<HTML>
+<HEAD>   <base href="<field>F_HTML_IMAGE_SERVER</field>">
+<title><field>D_COMPANY_LONG</field> | Checkout Window</TITLE>   
+    <!--#include virtual="tmScripts/disclaimer.html" -->
+    <!--#include virtual="tmScripts/styles.html" -->
+    <!--#include virtual="tmScripts/buttonRollover.html" -->
+    <!--#include virtual="tmScripts/pleaseWaitMessageFunction.html" -->
+    <!--#include virtual="tmScripts/dropDownMenuFunction.html" -->
+    <!--#include virtual="tmScripts/googleHeader.html" -->
+</HEAD>
+
+<body class="background">
+
+
+<!--#include virtual="TMtemplates/tmnavButtons.html" -->
+
+<div class="container">
+
+<div id="content">
+
+  <field>pick(len(F_HTML_PAGE_MESSAGE)>1,'<!-- comment: add multiple merchant popup')</field>
+  <div class="alert alert-danger">
+    <field>F_HTML_PAGE_MESSAGE</field>
+  </div>
+  <field>pick(len(F_HTML_PAGE_MESSAGE)>1,' -->')</field>
+
+ <FORM class="form-horizontal" id="TMForm" ACTION="<field>F_HTML_FIREWALL</field>online" METHOD=POST>
+        
+    <!-- comment: following fields used for hidden submit
+                  remove the input field for 'param' if you want to go to the default page TMcart.html as we usually go there
+                  after making chances to the shopping cart.  If you prefer to stay on this page and process the credit, the
+                  leave the hidden param field and set is value to 'btnCheckoutProcessing'
+                -->
+
+    <input type=hidden name=pg value="checkout">
+    <input type=hidden name=fee value="<field>D_WEB_MAIL_FEE_SEQ</field>">
+    <input type=hidden name=param value="altbtn=btnCheckoutProcessing">
+    <input type=hidden name=hiddenSubmit value="">
+
+    <div class="form-group">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-10">
+      <!--#include virtual="TMtemplates/tmTicketHandling.html" -->
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="">Payment Amount</label>
+      <div class="col-sm-10">
+      <p class="form-control-static"><strong>$<field>SCH_TOTAL_COST</field> <field>F_HTML_CURRENCY</field></strong></p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="PAY_METHOD_FC_SEQ">Payment Method</label>
+      <div class="col-sm-10">
+      <select class="form-control" id="PAY_METHOD_FC_SEQ" name="PAY_METHOD_FC_SEQ"><field>F_HTML_PAYMENT_LIST</field></select>
+      <field>pick(len(F_HTML_MERCHANT_LIST)>0,'<!-- comment: add multiple merchant popup')</field>
+                        Currency: <select class="form-control" name="MM_SEQ" size="1" onChange="submitForm('TMForm','btnCheckoutMerchant','YES');">
+                        <field>F_HTML_MERCHANT_LIST</field></select>
+                    <field>pick(len(F_HTML_MERCHANT_LIST)>0,' -->')</field>
+               <field>pick(D_ENABLE_INTERNET_PASS_REDEMPTION=1,'<!-- comment: only show if redeem passes ok','')</field>
+               <input class="form-control" name="btnPassRemainingValues" type="submit" value="Redeem Gift Certificates" class="btn btn-success" onClick="process()">
+               <field>pick(D_ENABLE_INTERNET_PASS_REDEMPTION=1,'-->','')</field>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="PAY_CARD_NO">Card Number</label>
+      <div class="col-sm-10">
+      <input class="form-control" id="PAY_CARD_NO" name="PAY_CARD_NO" type=text value="<field>PAY_CARD_NO</field>" size=30 maxlength=30 autocomplete=off>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="ExpireMonth">Exp Month</label>
+      <div class="col-sm-10">
+      <select class="form-control" id="ExpireMonth" name="ExpireMonth"><field>F_HTML_MONTH_LIST</field></select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="ExpireYear">Exp Year</label>
+      <div class="col-sm-10">
+      <select class="form-control" id="ExpireYear" name="ExpireYear"><field>F_HTML_YEAR_LIST</field></select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="CD_NAME_ON_CARD">Name on card</label>
+      <div class="col-sm-10">
+      <input class="form-control" id="CD_NAME_ON_CARD" name="CD_NAME_ON_CARD" type=text value="<field>CD_NAME_ON_CARD</field>" size=30 maxlength=25>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="PAY_CARD_CID_NO">CVV</label>
+      <div class="col-sm-10">
+      <input class="form-control" id="PAY_CARD_CID_NO" name="PAY_CARD_CID_NO" type=text value="<field>PAY_CARD_CID_NO</field>" size=10 maxlength=4>
+      <span class="help-block">The 3 or 4 digit security code on your card.</span>
+      </div>
+    </div>
+
+    <field>pick(F_POST_DATED_PLAN_ALLOWED&(SCH_TOTAL_COST-F_POST_DATED_AMOUNT_DUE_TODAY)>0,'<!-- comment: installment plan options')</field>
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="">Installment Payments</label>
+      <div class="col-sm-10">
+      <!--#include virtual="tmTemplates/tmCheckoutPostDatedPayments.html" -->
+      </div>
+    </div>
+    <field>pick(F_POST_DATED_PLAN_ALLOWED&(SCH_TOTAL_COST-F_POST_DATED_AMOUNT_DUE_TODAY)>0,'-->')</field>
+    
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="ORD_REASON_BUY_FC_SEQ">How Did You Hear About Us?</label>
+      <div class="col-sm-10">
+      <select class="form-control" id="ORD_REASON_BUY_FC_SEQ" name="ORD_REASON_BUY_FC_SEQ" size="5"><field>F_HTML_REASON_TO_BUY_LIST</field></select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="ORD_NOTES">Additional comments about your order</label>
+      <div class="col-sm-10">
+      <textarea class="form-control" id="ORD_NOTES" name="ORD_NOTES" cols="40" rows="5"><field>ORD_NOTES</field></textarea>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <div class="checkbox">
+      <field>pick(D_REQD_ACKNOWLEDGE_CRITERIA,'<!-- comment:')</field>
+              <label for="conditions">
+              <input type="checkbox" name="ORD_ACKNOWLEDGED_CONDITIONS" value="1" id="conditions"
+              <field>pick(SCH_ACKNOWLEDGED_CONDITIONS,'','checked')</field>>
+                I Accept the
+              <a href="<field>F_HTML_FIREWALL</field>TMtemplates/tmtermsandconditions.html"
+              class="link" onclick="return popup(this, 'notes')">Terms and Conditions</a>
+              </label>
+            <field>pick(D_REQD_ACKNOWLEDGE_CRITERIA,'-->')</field>
+          </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-10">
+        <!--#include virtual="TMtemplates/pleaseWaitMessage.html" -->
+                
+        <input name="btnCheckoutProcessing" type=submit value="Click to Continue" class="btn btn-success" onClick="process()" >
+        <input name="btnHome" type=submit value="Cancel" class="btn btn-danger">
+      </div>
+    </div>
+
+  </form>
+
+  <div style="margin: 20px 0;">
+      <p>
+      For your own security, if you do not see a GEOTRUST security certificate on this page,
+      please call the box office and do not continue with the checkout process.
+      </p>
+     <!-- GeoTrust QuickSSL [tm] Smart Icon tag. Do not edit. -->
+     <script language="JavaScript" type="text/javascript" src="//smarticon.geotrust.com/si.js"></script>
+     <!-- end GeoTrust Smart Icon tag -->
+  </div>
+
+  <div class="alert alert-warning">
+    <strong>All ticket sales are final. No refunds or exchanges.</strong> 
+    <a href="<field>F_HTML_FIREWALL</field>tmFee/tmBoxOfficePolicy.html"
+    class="link" onclick="return popup(this, 'notes')">Box Office Policies</a>
+  </div>
+          
+</div>
+</div><!-- .container -->
+<!--#include virtual="TMtemplates/tmFooter.html" -->
+</BODY>
+</HTML>
