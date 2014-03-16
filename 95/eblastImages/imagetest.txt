@@ -1,0 +1,2 @@
+This test file created from theatre manager company preferences window by Listener Web on 12 FEB 13  16:45:26.73
+If there are images in this directory, they were placed here as part of an e-blast.  Do not remove the pictures otherwise emails that were already sent to patrons will no longer display the jpeg images from this web site.
