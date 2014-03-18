@@ -1,6 +1,6 @@
 <HTML>
 <HEAD><base href="<field>F_HTML_IMAGE_SERVER</field>">
-<title><field>D_COMPANY_LONG</field> | Ticket Search Options</TITLE>   
+<title><field>D_COMPANY_LONG</field> | Ticket Search Options</TITLE>
 	<!--#include virtual="tmScripts/disclaimer.html" -->
 	<!--#include virtual="tmScripts/styles.html" -->
     <!--#include virtual="tmScripts/buttonRollover.html" -->
@@ -19,9 +19,11 @@
 		<h1><field>P_PLAY_TITLE</field> <span class="text-muted"><field>cap(dat(PB_PERFORM_DATE,'w n D, y'))</field> at <field>PB_PERFORM_TIME</field></span></h1>
 	</div>
 
-	<div class="">
-		<field>F_HTML_PAGE_MESSAGE</field>
-	</div>
+	<field>pick(len(F_HTML_PAGE_MESSAGE)>1,'<!-- comment: add multiple merchant popup')</field>
+  <div class="alert alert-danger">
+    <field>F_HTML_PAGE_MESSAGE</field>
+  </div>
+  <field>pick(len(F_HTML_PAGE_MESSAGE)>1,' -->')</field>
 
 	<div class="row">
 		<div class="col-md-4">
