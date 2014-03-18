@@ -9,6 +9,13 @@
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 <script type="text/javascript">
+$(document).ready(function(){
+	var lastLine = $("#pages").attr("data-last-displayed");
+	var activePage = lastLine / 30;
+	$('.page-' + activePage).addClass('active');
+});
+</script>
+<script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
 </script>
