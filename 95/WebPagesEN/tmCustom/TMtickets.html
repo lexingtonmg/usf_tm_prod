@@ -1,6 +1,6 @@
 <HTML>
 <HEAD>   <base href="<field>F_HTML_IMAGE_SERVER</field>">
-<title><field>D_COMPANY_LONG</field> | Upcoming <field>tEditCheck.$setPlural(D_EVENT)</field></TITLE>   
+<title><field>D_COMPANY_LONG</field> | Upcoming <field>tEditCheck.$setPlural(D_EVENT)</field></TITLE>
     <meta http-equiv="Pragma" content="no-cache">
 	<!-- Pragma content set to no-cache tells the browser not to cache the page This may or may not work in IE -->
 	<meta http-equiv="expires" content="0">
@@ -19,73 +19,8 @@
 <!--#include virtual="TMtemplates/tmnavButtons.html" -->
 <div class="container">
   <div id="content">
-  
-    <!-- Search panel -->
-<div class="panel-group" id="accordion" style="margin-bottom: 15px;">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">
-		<a data-toggle="collapse" data-parent="#accordion" href="#collapseSearch">
-		<i class="fa fa-search"></i> Search for an event
-		</a>
-	</h3>
-      </div>
-      <div id="collapseSearch" class="panel-collapse collapse">
-      <div class="panel-body">
-        <form action="<field>F_HTML_FIREWALL</field>online" method="POST" class="">
-              <div class="row">
-                <div class="col-md-2">
-                  <div class="form-group">
-                    <label class="control-label" for="year">Year</label>
-                    <select name="year" id="year" class="form-control">
-                      <field>F_HTML_YEAR_LIST</field>
-                    </select>
-                  </div> <!-- /form-group -->
-                </div> <!-- /col -->
-                <div class="col-md-2">
-                  <div class="form-group">
-                    <label class="control-label" for="month">Month</label>
-                    <select name="month" id="month" class="form-control">
-                      <field>F_HTML_MONTH_LIST</field>
-                    </select>
-                  </div>
-                </div><!-- /col -->
-              <div class="col-md-6">
 
-              <div class="form-group">
-                <label class="control-label" for="event">Event</label>
-                <select name="event" id="event" class="form-control">
-                    <field>F_HTML_EVENT_LIST</field></select>
-                </select>
-              </div> <!-- /form-group -->
-            </div> <!-- /col -->
-            <div class="col-md-2">
-              <div class="form-group" style="margin-top: 25px;">
-                <input name="btnGetEventList" type="submit" id="Search" value="Search" class="new btn btn-success btn-block" onclick="process()">
-              </div> <!-- /form-group -->
-            </div> <!-- /col -->
-          </div> <!-- /row -->
-          <div class="row">
-            <div class="col-md-6">
-              <div class="input-group">
-                <field>pick(F_PRESALES_ALLOWED,'<!-- comment: based on setting in company preferences')</field>
-                <input name="CH_CODE" type=text id="CH_CODE" value="<field>CH_CODE</field>" size=40 maxlength=40 onBlur="this.value=this.value.toUpperCase()" placeholder="Presale Access Code">
-                <span class="input-group-btn">
-                  <input name="btnCouponAccept" type="submit" class="new btn btn-default" onclick="process()" >
-                  <input name='param' type='hidden' value ='altbtn=btnGetEventList'>
-                </span>
-                <field>pick(F_PRESALES_ALLOWED,' -->')</field>
-              </div>  
-              <center><!--#include virtual="TMtemplates/pleaseWaitMessage.html" --></center>
-
-            </div> <!-- /col -->
-          </div> <!-- /row -->
-        </form>
-      </div><!-- /panel-body -->
-      </div><!-- /panel-collapse -->
-    </div> <!-- /panel -->
-    </div><!-- /panel-group -->	
-
+<!--#include virtual="TMtemplates/searchTop.html" -->
 
     <small class="text-muted"><field>F_HTML_PAGE_MESSAGE</field></small>
 
@@ -101,7 +36,7 @@
     <field>F_HTML_PERFORMANCE_LIST</field>
     <!-- END restructured event list -->
 
-      
+    <!--#include virtual="TMtemplates/searchBottom.html" -->
 
     <div align="center">
 
