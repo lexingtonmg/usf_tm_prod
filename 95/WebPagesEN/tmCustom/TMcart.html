@@ -62,21 +62,6 @@
                 <input name="btnPassRemainingValues" type="submit" value="Redeem My Passes/Gift Certificates" class="btn btn-default" onClick="process()">
                 <field>pick(D_ENABLE_INTERNET_PASS_REDEMPTION=1,'-->','')</field>
 
-                <!-- comment: Update the hidden "fee" field with the Fee Number with the matching Mailing Fee Number
-                              in Theatre Manager.  If you do not want the mailing option at all on your web pages,
-                              comment out the following section  or remove the fee number from company preferences.
-                              If you want the patron to go to the checkout page right away, then add the input field
-                              <input type=hidden name=param value="altbtn=btnCheckoutProcessing"> after the
-                              D_WEB_MAIL_FEE_SEQ input field.
-                -->
-                <field>pick(F_MAIL_FEE_ALLOWED,'<!-- comment: only show mail button if required')</field>
-                <input name="btnMailFeeAdd" type=submit value="Mail me my tickets" class="btn btn-info" onclick="process()">&nbsp;
-                <input type=hidden name=fee value="<field>D_WEB_MAIL_FEE_SEQ</field>">
-                <field>pick(F_MAIL_FEE_ALLOWED,'-->')</field>
-
-                <field>pick(D_ENABLE_INTERNET_PASS_REDEMPTION&F_MAIL_FEE_ALLOWED,'<!-- comment: send to a new line','')</field>
-                <br><br>
-                <field>pick(D_ENABLE_INTERNET_PASS_REDEMPTION&F_MAIL_FEE_ALLOWED,'-->','')</field>
 
                 <input name="btnCheckout" type=submit value="Checkout &amp; Pay" class="btn btn-success" onClick="process()">
                 <br><br>

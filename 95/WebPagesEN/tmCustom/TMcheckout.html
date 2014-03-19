@@ -1,6 +1,6 @@
 <HTML>
 <HEAD>   <base href="<field>F_HTML_IMAGE_SERVER</field>">
-<title><field>D_COMPANY_LONG</field> | Checkout Window</TITLE>   
+<title><field>D_COMPANY_LONG</field> | Checkout Window</TITLE>
     <!--#include virtual="tmScripts/disclaimer.html" -->
     <!--#include virtual="tmScripts/styles.html" -->
     <!--#include virtual="tmScripts/buttonRollover.html" -->
@@ -25,7 +25,7 @@
   <field>pick(len(F_HTML_PAGE_MESSAGE)>1,' -->')</field>
 
  <FORM class="form-horizontal" id="TMForm" ACTION="<field>F_HTML_FIREWALL</field>online" METHOD=POST>
-        
+
     <!-- comment: following fields used for hidden submit
                   remove the input field for 'param' if you want to go to the default page TMcart.html as we usually go there
                   after making chances to the shopping cart.  If you prefer to stay on this page and process the credit, the
@@ -40,7 +40,9 @@
     <div class="form-group">
       <div class="col-sm-2"></div>
       <div class="col-sm-10">
-      <!--#include virtual="TMtemplates/tmTicketHandling.html" -->
+        <div class="alert alert-info">
+          It is the policy of the Utah Shakespeare Festival to mail all purchased tickets. However, because tickets may take five to seven business days to arrive at your mailing address, tickets for events within the next seven days will not be mailed out. You may pick these tickets up at Will Call. The Utah Shakespeare Festival is not responsible for tickets lost in the mail.
+        </div>
       </div>
     </div>
     <div class="form-group">
@@ -102,7 +104,7 @@
       </div>
     </div>
     <field>pick(F_POST_DATED_PLAN_ALLOWED&(SCH_TOTAL_COST-F_POST_DATED_AMOUNT_DUE_TODAY)>0,'-->')</field>
-    
+
     <div class="form-group">
       <label class="col-sm-2 control-label" for="ORD_REASON_BUY_FC_SEQ">How Did You Hear About Us?</label>
       <div class="col-sm-10">
@@ -137,7 +139,7 @@
       <div class="col-sm-2"></div>
       <div class="col-sm-10">
         <!--#include virtual="TMtemplates/pleaseWaitMessage.html" -->
-                
+
         <input name="btnCheckoutProcessing" type=submit value="Click to Continue" class="btn btn-success" onClick="process()" >
         <input name="btnHome" type=submit value="Cancel" class="btn btn-danger">
       </div>
@@ -156,11 +158,11 @@
   </div>
 
   <div class="alert alert-warning">
-    <strong>All ticket sales are final. No refunds or exchanges.</strong> 
+    <strong>All ticket sales are final. No refunds or exchanges.</strong>
     <a href="<field>F_HTML_FIREWALL</field>tmFee/tmBoxOfficePolicy.html"
     class="link" onclick="return popup(this, 'notes')">Box Office Policies</a>
   </div>
-          
+
 </div>
 </div><!-- .container -->
 <!--#include virtual="TMtemplates/tmFooter.html" -->
