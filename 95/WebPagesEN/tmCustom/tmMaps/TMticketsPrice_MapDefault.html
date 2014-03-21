@@ -1,6 +1,6 @@
 <HTML>
 <HEAD>   <base href="<field>F_HTML_IMAGE_SERVER</field>">
-<title><field>D_COMPANY_LONG</field> | Ticket Seating Selection</TITLE>   
+<title><field>D_COMPANY_LONG</field> | Ticket Seating Selection</TITLE>
 	<!--#include virtual="tmScripts/disclaimer.html" -->
 	<!--#include virtual="tmScripts/styles.html" -->
     <!--#include virtual="tmScripts/buttonRollover.html" -->
@@ -18,7 +18,7 @@
 		<h1><field>P_PLAY_TITLE</field> <span class="text-muted"><field>cap(dat(PB_PERFORM_DATE,'w n D, y'))</field> at <field>PB_PERFORM_TIME</field></span></h1>
 	</div>
 
-			
+
 
 	<div class="row">
 		<div class="col-md-4">
@@ -40,10 +40,13 @@
 		        <field>pick(len(VE_ADDRESS2)=0,con(VE_ADDRESS2,'<br>'))</field>
 		        <field>VE_CITY</field> <field>VE_PROVINCE</field> <field>VE_POSTAL_CODE</field>
 			</p>
+			<div>
+				<img class="img-thumbnail" src="<field>F_HTML_FIREWALL</field>tmGifs/theater<field>TM_SEQ</field>.png">
+			</div>
 
 		</div>
 		<div class="col-md-8">
-			
+
 			<div class="lead">
 				<field>F_HTML_PAGE_MESSAGE</field>
 			</div>
